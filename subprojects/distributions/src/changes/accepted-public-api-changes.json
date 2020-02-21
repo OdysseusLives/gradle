@@ -1,19 +1,27 @@
 {
     "acceptedApiChanges": [
         {
-            "type": "org.gradle.plugins.signing.signatory.pgp.PgpSignatoryProvider",
-            "member": "Class org.gradle.plugins.signing.signatory.pgp.PgpSignatoryProvider",
-            "acceptation": "Introduced a new internal API interface for bridging with the security subproject",
+            "type": "org.gradle.plugins.signing.SignOperation",
+            "member": "Method org.gradle.plugins.signing.SignOperation.toFileCollection(java.util.List)",
+            "acceptation": "Method is intended to be used only by this class",
             "changes": [
-                "org.gradle.plugins.signing.signatory.internal.ConfigurableSignatoryProvider"
+                "Abstract method has been added to this class"
             ]
         },
         {
-            "type": "org.gradle.api.artifacts.repositories.RepositoryContentDescriptor",
-            "member": "Class org.gradle.api.artifacts.repositories.RepositoryContentDescriptor",
-            "acceptation": "A new super interface has been introduced but old methods preserved on this one",
+            "type": "org.gradle.kotlin.dsl.DependencyHandlerScope",
+            "member": "Method org.gradle.kotlin.dsl.DependencyHandlerScope.constraints(org.gradle.api.Action)",
+            "acceptation": "method is actually from superclass but hidden from consumers",
             "changes": [
-                "org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor"
+                "METHOD_ADDED_TO_PUBLIC_CLASS"
+            ]
+        },
+        {
+            "type": "org.gradle.kotlin.dsl.DependencyHandlerScope",
+            "member": "Method org.gradle.kotlin.dsl.DependencyHandlerScope.constraints(kotlin.jvm.functions.Function1)",
+            "acceptation": "bridge method",
+            "changes": [
+                "METHOD_ADDED_TO_PUBLIC_CLASS"
             ]
         }
     ]

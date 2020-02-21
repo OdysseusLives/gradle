@@ -153,9 +153,8 @@ buildTypes {
 
     // Used to build production distros and smoke test them
     create("packageBuild") {
-        tasks(
-            "verifyIsProductionBuildEnvironment", "clean", "buildDists",
-            "distributions:integTest")
+        tasks("verifyIsProductionBuildEnvironment", "clean", "buildDists",
+            "distributions:integTest", ":docs:checkSamples")
     }
 
     // Used to build production distros and smoke test them
@@ -166,7 +165,7 @@ buildTypes {
     }
 
     create("soakTest") {
-        tasks("soak:soakTest")
+        tasks("soak:soakIntegTest")
         projectProperties("testAllVersions" to true)
     }
 
@@ -192,6 +191,10 @@ allprojects {
             name = "kotlin-dev"
             url = uri("https://dl.bintray.com/kotlin/kotlin-dev")
         }
+        maven {
+            name = "kotlin-eap"
+            url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
+        }
     }
 
     // patchExternalModules lives in the root project - we need to activate normalization there, too.
@@ -214,6 +217,7 @@ apply(plugin = "gradlebuild.quick-check")
 apply(plugin = "gradlebuild.update-versions")
 apply(plugin = "gradlebuild.dependency-vulnerabilities")
 apply(plugin = "gradlebuild.add-verify-production-environment-task")
+apply(plugin = "gradlebuild.generate-subprojects-info")
 
 // https://github.com/gradle/gradle-private/issues/2463
 apply(from = "gradle/remove-teamcity-temp-property.gradle")
