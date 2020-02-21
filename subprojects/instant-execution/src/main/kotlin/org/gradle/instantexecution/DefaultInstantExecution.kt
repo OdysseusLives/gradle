@@ -205,6 +205,8 @@ class DefaultInstantExecution internal constructor(
 
         readGradleState(build.gradle)
 
+        build.gradle.includedBuilds = emptyList()
+
         readRelevantProjects(build)
 
         build.registerProjects()
